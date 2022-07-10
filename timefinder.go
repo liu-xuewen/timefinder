@@ -3,7 +3,7 @@ package timefinder
 import (
 	"embed"
 	"fmt"
-	"github.com/huichen/sego"
+	"github.com/liu-xuewen/sego"
 	"path"
 	"regexp"
 	"runtime"
@@ -396,12 +396,12 @@ func New(fileNames ...string) *TimeFinder {
 	if len(fileNames) < 1 {
 		// 增加一些特殊词语的分词及词性
 		//txtFS.ReadFile("stubs/" + stubName + ".stub")
-		currentPath = path.Join(path.Dir(getCurrentFilePath()), "./txt/jieba_dict.txt") + "," + path.Join(path.Dir(getCurrentFilePath()), "./txt/dictionary.txt")
+		currentPath = path.Join("txt/jieba_dict.txt" + "," + "txt/dictionary.txt")
 	} else {
 		currentPath = strings.Join(fileNames, ",")
 	}
 
-	finder.Segmenter.LoadDictionary(currentPath)
+	finder.Segmenter.LoadDictionary(txtFS, currentPath)
 
 	return finder
 }
